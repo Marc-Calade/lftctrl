@@ -16,6 +16,8 @@
 // Installer: sudo npm i -s mongoose
 // module Express
 const express = require('express');
+// module cors
+const cors = require('cors')
 // module mongoose
 const mongoose = require('mongoose');
 // module nodemailer
@@ -47,7 +49,8 @@ const { json } = require('express');
 dotenv.config();
 // Middleware pour faire un post
 app.use(express.json());
-app.use(cors('*'));
+//app.use(cors('*'));
+app.use(cors());
 // Fonction date
 function myDate() {
     const today = new Date();
