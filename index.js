@@ -34,7 +34,7 @@ arduinoSerialPort.on('error', function (err) {
 const app = express();
 // Configuration des options cors
 const cors = require('cors-express');
-options = {
+corsOptions = {
     allow: {
         origin: '*',
         methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
