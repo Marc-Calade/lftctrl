@@ -4,6 +4,7 @@
 // npm init -y
 // Installer: npm i -s express
 // Installer: npm i -s nodemon
+// Installer: sudo npm i -s cors
 // Installer: npm i -s cors-express
 // Installer: npm i -s dotenv
 // Installer: npm i -s nodemailer
