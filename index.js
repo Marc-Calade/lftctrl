@@ -85,6 +85,14 @@ db.once('open', function () {
         })*/
         res.send('capteurs');
     });
+    app.get('/', (req, res) => {
+        /*Capteur.find(function (err, capteurs) {
+            if (err) return console.error(err);
+            res.send(capteurs);
+            console.log('res.send(capteurs) to client');
+        })*/
+        res.send('getting all capteurs');
+    });
     ////////////////////Effacer tous les capteurs arduinodb////////////////////
     app.post('/deleteCpt/', function (req, res) {
         // Date de l'enregistrement
