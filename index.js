@@ -34,7 +34,7 @@ arduinoSerialPort.on('error', function (err) {
 const app = express();
 // Configuration des options cors
 const cors = require('cors-express');
-corsOptions = {
+const corsOptions = {
     allow: {
         origin: '*',
         methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
@@ -74,7 +74,7 @@ db.once('open', function () {
     // Définition du model collection capteurs
     const Capteur = mongoose.model('Capteur', capteurSchema);
     ////////////////////Lecture collection capteurs////////////////////
-    app.get('/findCpt/', (req, res) => {
+    app.get('/findCpt/', cors(corsOptions), (req, res) => {
         Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
             res.send(capteurs);
