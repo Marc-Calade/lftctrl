@@ -50,7 +50,7 @@ dotenv.config();
 // Middleware pour faire un post
 app.use(express.json());
 //app.use(cors('*'));
-app.use(cors());
+app.use(cors({origin: '*'}));
 // Fonction date
 function myDate() {
     const today = new Date();
@@ -78,11 +78,12 @@ db.once('open', function () {
     const Capteur = mongoose.model('Capteur', capteurSchema);
     ////////////////////Lecture collection capteurs////////////////////
     app.get('/findCpt/', (req, res) => {
-        Capteur.find(function (err, capteurs) {
+        /*Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
             res.send(capteurs);
             console.log('res.send(capteurs) to client');
-        })
+        })*/
+        res.send('capteurs');
     });
     ////////////////////Effacer tous les capteurs arduinodb////////////////////
     app.post('/deleteCpt/', function (req, res) {
