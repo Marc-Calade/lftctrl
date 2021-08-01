@@ -33,14 +33,14 @@ arduinoSerialPort.on('error', function (err) {
 // midleware express
 const app = express();
 // Configuration des options cors
-const cors = require('cors-express');
+/*const cors = require('cors-express');
 const corsOptions = {
     allow: {
         origin: '*',
         methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
         headers: 'Content-Type, Authorization, Content-Length, X-Requested-With, X-HTTP-Method-Override'
     }
-};
+};*/
 // Variable d'environnement
 const dotenv = require('dotenv');
 const { json } = require('express');
@@ -74,7 +74,7 @@ db.once('open', function () {
     // Définition du model collection capteurs
     const Capteur = mongoose.model('Capteur', capteurSchema);
     ////////////////////Lecture collection capteurs////////////////////
-    app.get('/findCpt/', cors(corsOptions), (req, res) => {
+    app.get('/findCpt/', (req, res) => {
         Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
             res.send(capteurs);
