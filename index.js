@@ -4,7 +4,6 @@
 // npm init -y
 // Installer: npm i -s express
 // Installer: npm i -s nodemon
-// Installer: sudo npm i -s cors
 // Installer: npm i -s cors-express
 // Installer: npm i -s dotenv
 // Installer: npm i -s nodemailer
@@ -16,8 +15,6 @@
 // Installer: sudo npm i -s mongoose
 // module Express
 const express = require('express');
-// module cors
-const cors = require('cors')
 // module mongoose
 const mongoose = require('mongoose');
 // module nodemailer
@@ -35,8 +32,8 @@ arduinoSerialPort.on('error', function (err) {
 // midleware express
 const app = express();
 // Configuration des options cors
-/*const cors = require('cors-express');
-const corsOptions = {
+const cors = require('cors-express');
+/*options = {
     allow: {
         origin: '*',
         methods: 'GET,PATCH,PUT,POST,DELETE,HEAD,OPTIONS',
@@ -49,8 +46,7 @@ const { json } = require('express');
 dotenv.config();
 // Middleware pour faire un post
 app.use(express.json());
-//app.use(cors('*'));
-app.use(cors({origin: '*'}));
+app.use(cors('*'));
 // Fonction date
 function myDate() {
     const today = new Date();
@@ -78,20 +74,11 @@ db.once('open', function () {
     const Capteur = mongoose.model('Capteur', capteurSchema);
     ////////////////////Lecture collection capteurs////////////////////
     app.get('/findCpt/', (req, res) => {
-        /*Capteur.find(function (err, capteurs) {
+        Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
             res.send(capteurs);
             console.log('res.send(capteurs) to client');
-        })*/
-        res.send('capteurs');
-    });
-    app.get('/', (req, res) => {
-        /*Capteur.find(function (err, capteurs) {
-            if (err) return console.error(err);
-            res.send(capteurs);
-            console.log('res.send(capteurs) to client');
-        })*/
-        res.send('getting all capteurs');
+        })
     });
     ////////////////////Effacer tous les capteurs arduinodb////////////////////
     app.post('/deleteCpt/', function (req, res) {
