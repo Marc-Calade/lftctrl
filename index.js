@@ -74,11 +74,12 @@ db.once('open', function () {
     const Capteur = mongoose.model('Capteur', capteurSchema);
     ////////////////////Lecture collection capteurs////////////////////
     app.get('/findCpt/', (req, res) => {
-        Capteur.find(function (err, capteurs) {
+        res.send('ok');
+        /*Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
             res.send(capteurs);
             console.log('res.send(capteurs) to client');
-        })
+        })*/
     });
     ////////////////////Effacer tous les capteurs arduinodb////////////////////
     app.post('/deleteCpt/', function (req, res) {
