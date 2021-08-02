@@ -56,7 +56,7 @@ function myDate() {
 };
 
 // Connexion database mongodb
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(process.env.MONGODB_URI || process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true });
 // Vérification de la connexion à la database
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
