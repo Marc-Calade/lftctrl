@@ -8,6 +8,13 @@
 const express = require('express')
 const cors = require('cors')
 const mongoose = require('mongoose');
+// Fonction date
+function myDate() {
+    const today = new Date();
+    const formaDate = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+    const dateDuJour = today.toLocaleDateString('fr-FR', formaDate);
+    return dateDuJour;
+  };
 // Connexion database mongodb
 const url = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -53,6 +60,30 @@ db.once('open', function () {
             res.status(200).send(actionneurs)
             console.log('res.send(actionneurs) to client');
         })
+    });
+    // commande actionneur general arduinodb
+    app.post('/cmdAct/', function (req, res) {
+        // Date de l'enregistrement
+        dateAct = myDate();
+        const myNom = req.body.nom;
+        const myCmd = req.body.cmd;
+        // Recherche actionneur demandé (filter), 
+        // Mise à jour valeur de commande (update)
+        // This function has 4 parameters i.e. 
+        // filter, update, options, callback
+        // by default, you need to set it to false.
+        mongoose.set('useFindAndModify', false);
+        Actionneur.findOneAndUpdate({ nom: myNom },
+            { cmd: myCmd }, null, function (err, actionneur) {
+                if (err) {
+                    console.log(err)
+                }
+                else {
+                    console.log(actionneur)
+                   // res.send('ok');
+                    res.status(200).send(actionneur)
+                }
+            });
     });
 });
 
