@@ -19,8 +19,8 @@ function myDate() {
 //const dotenv = require('dotenv');
 const dotenv = require('dotenv').config()
 // Connexion database mongodb
-const DB_USR = process.env.DB_USERNAME;
-const DB_PSW = process.env.DB_PASSWORD;
+const DB_USR = process.env.DB_USERNAME || process.env.HRK_MGDB_USR;
+const DB_PSW = process.env.DB_PASSWORD || process.env.HRK_MGDB_PSW;
 const URL_MGDB = 'mongodb+srv://' + DB_USR + ':' + DB_PSW + '@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
 //URL_MGDB = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
 //const URL_MGDB = process.env.DB_CONNECT;
