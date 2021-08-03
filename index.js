@@ -7,6 +7,10 @@
 // appel des modules Express
 const express = require('express')
 const cors = require('cors')
+const mongoose = require('mongoose');
+// Connexion database mongodb
+const url = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 const app = express()
 app.use(cors('*'));
 app.use(express.json())
