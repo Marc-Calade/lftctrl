@@ -11,11 +11,6 @@ const app = express()
 app.use(cors('*'));
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-// Variable d'environnement
-const dotenv = require('dotenv');
-// Gestion mongodb
-const mongoose = require('mongoose');
-
 app.get('/capteurs', (req, res, next) => {
     const capteurs = [1, 2, 3];
         res.status(200).send(capteurs)
