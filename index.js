@@ -15,9 +15,16 @@ function myDate() {
     const dateDuJour = today.toLocaleDateString('fr-FR', formaDate);
     return dateDuJour;
   };
+// Variables environnement
+//const dotenv = require('dotenv');
+const dotenv = require('dotenv').config()
 // Connexion database mongodb
-const url = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+const DB_USR = process.env.DB_USERNAME;
+const DB_PSW = process.env.DB_PASSWORD;
+const URL_MGDB = 'mongodb+srv://' + DB_USR + ':' + DB_PSW + '@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
+//URL_MGDB = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority'
+//const URL_MGDB = process.env.DB_CONNECT;
+mongoose.connect(URL_MGDB, { useNewUrlParser: true, useUnifiedTopology: true });
 const app = express()
 app.use(cors('*'));
 app.use(express.json())
