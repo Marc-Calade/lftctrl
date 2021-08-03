@@ -15,24 +15,7 @@ app.use(express.urlencoded({ extended: true }))
 const dotenv = require('dotenv');
 // Gestion mongodb
 const mongoose = require('mongoose');
-// Connexion database mongodb
-const DB_URL = 'mongodb+srv://Marc:Calade@cluster0.plndv.mongodb.net/arduinodb?retryWrites=true&w=majority';
-mongoose.connect(DB_URL, { useNewUrlParser: true, useUnifiedTopology: true });
-// Vérification de la connexion à la database
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-    console.log('database: arduinodb conected');
-// Définition du schéma collection capteurs
-const capteurSchema = new mongoose.Schema({
-    nom: { type: String, required: true },
-    dureeInactif: { type: Number, required: true },
-    horodatage: { type: String, required: true }
-});
-// Définition du model collection capteurs
-const Capteur = mongoose.model('Capteur', capteurSchema);
-// Lecture de la collection capteurs
-});
+
 app.get('/capteurs', (req, res, next) => {
     const capteurs = [1, 2, 3];
         res.status(200).send(capteurs)
