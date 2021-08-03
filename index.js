@@ -33,11 +33,9 @@ const capteurSchema = new mongoose.Schema({
 const Capteur = mongoose.model('Capteur', capteurSchema);
 // Lecture de la collection capteurs
 app.get('/capteurs', (req, res, next) => {
-    Capteur.find(function (err, capteurs) {
-        if (err) return console.error(err);
+    const capteurs = [1, 2, 3];
         res.status(200).send(capteurs)
         console.log('res.send(capteurs) to client');
-    })
 });
 });
 // Serveur l’écoute avec la méthode listen avec app + le port 
