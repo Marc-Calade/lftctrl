@@ -28,7 +28,7 @@ db.once('open', function () {
     });
     // Définition du model collection capteurs
     const Capteur = mongoose.model('Capteur', capteurSchema);
-    ////////////////////Lecture collection capteurs////////////////////
+    //Lecture collection capteurs
     app.get('/capteurs', (req, res, next) => {
         Capteur.find(function (err, capteurs) {
             if (err) return console.error(err);
@@ -36,7 +36,26 @@ db.once('open', function () {
             console.log('res.send(capteurs) to client');
         })
     });
+    // Définition du schéma collection actionneurs
+    const actionneurSchema = new mongoose.Schema({
+        id: { type: Number, required: true },
+        nom: { type: String, required: true },
+        cmd: { type: Number, required: true },
+        etat: { type: Number, required: true },
+        horodatage: { type: String, required: true }
+    });
+    // Définition du model collection actionneurs
+    const Actionneur = mongoose.model('Actionneurs', actionneurSchema);
+    //Lecture collection actionneurs
+    app.get('/actionneurs', (req, res, next) => {
+        Actionneur.find(function (err, actionneurs) {
+            if (err) return console.error(err);
+            res.status(200).send(actionneurs)
+            console.log('res.send(actionneurs) to client');
+        })
+    });
 });
+
 // Serveur l’écoute avec la méthode listen avec app + le port 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
