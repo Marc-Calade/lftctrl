@@ -36,9 +36,11 @@ function myDate() {
 };
 // Variables environnement
 const dotenv = require('dotenv').config()
+// Connexion database mongodb
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true });
 // Connexion database mongodb liste utilisateur
-const url = 'mongodb+srv://Marc:Calade@cluster0.9rknc.mongodb.net/liste?retryWrites=true&w=majority';
-mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
+// const url = 'mongodb+srv://Marc:Calade@cluster0.9rknc.mongodb.net/liste?retryWrites=true&w=majority';
+// mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
 // Vérification de la connexion à la database
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
